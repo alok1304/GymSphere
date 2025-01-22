@@ -10,5 +10,6 @@ urlpatterns = [
     path('pricing/', views.pricing,name='pricing'),
     path('privacy/', views.privacy,name='privacy'),
     path('terms/', views.terms,name='terms'),
-        path('register/', views.register,name='register'),
+    path('register/', views.register,name='register'),
+    path('checkout/<int:plan_id>', views.checkout,name='checkout'),
 ]

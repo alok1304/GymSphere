@@ -57,3 +57,9 @@ def register(request):
     else:
         form =UserRegistrationForm()   
     return render(request,'registration/register.html',{'form':form})
+
+
+# terms Page
+def checkout(request,plan_id):
+    planDetail=models.Plan.objects.get(pk=plan_id)
+    return render(request,'checkout.html',{'plans':planDetail})
