@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <title>
+        {% block title %}
+        GymSphere
+        {% endblock %}
+    </title>
+    
+    {% block script %}
+
+    {% endblock %}
+   
+	
+  {% load bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+
+</head>
+<body >
+   <nav class="navbar navbar-expand-lg navbar-light bg-warning" >
+	  <div class="container">
+	    <a class="navbar-brand" href="./">GymSphere</a>
+	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+	    <div class="collapse navbar-collapse" id="navbarNav">
+	      <ul class="navbar-nav ms-auto">
+	        <li class="nav-item">
+	          <a class="nav-link" aria-current="page" href="{% url "home" %}">Home</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" aria-current="page" href="{% url "gallery" %}">Gallery</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" href="{% url "pricing" %}">Pricing</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link btn btn-sm btn-dark text-white" href="{% url "enquiry" %}">Enquiry</a>
+	        </li>
+	        <li class="nav-item dropdown">
+	          <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+	            My Account
+	          </a>
+	          <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                {% if not request.user.is_authenticated %}
+				<li><a class="dropdown-item" href="{% url "register" %}">Register</a></li>
+	            <li><a class="dropdown-item" href="{% url "login" %}">Login</a></li>
+				{% else %}
+	            <li><hr class="dropdown-divider"></li>
+	            <li><a class="dropdown-item" href="#">Profile</a></li>
+	            <li><a class="dropdown-item" href="#">Settings</a></li>
+	            <li><a class="dropdown-item" href="{% url "logout" %}">Logout</a></li>
+				{% endif %}
+	          </ul>
+	        </li>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+
+
+      <div class="container">
+		{% block content %}
+      {% endblock %}
+	  </div>
+
+
+
+    <footer class="container py-5">
+	   <div class="container">
+		   <p class="float-end"><a href="#">Back to top</a></p>
+	       <p>© 2025 InfoSphere, Inc. · 
+            <a href="{% url "privacy" %}">Privacy</a> · 
+            <a href="{% url "terms" %}">Terms</a> . 
+            <a href="{% url "faq" %}">FAQ</a>
+        </p>
+	   </div>
+	  </footer>
+    
+</body>
+</html>

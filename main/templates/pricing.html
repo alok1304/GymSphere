@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    pricing
+{% endblock %}
+
+{% block content %}
+   <section class="container my-4">
+    	<h1 class="text-center mb-4 section-heading border-bottom pb-2">Plans</h1>
+  <main>
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+     
+{% for plan in plans %}
+<div class="col">
+    <div class="card mb-4 rounded-3 shadow-sm">
+        <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">{{ plan.title }}</h4>
+        </div>
+        <div class="card-body">
+            <h1 class="card-title pricing-card-title">{{ plan.price }}<small class="text-muted fw-light">/mo</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+                {% for feature in plan.planfeature_set.all %}
+                    <li>{{ feature.feature }}</li>
+                {% endfor %}
+            </ul>
+            <a href="checkout.php" class="w-100 btn btn-lg btn-outline-primary">Get started</a>
+        </div>
+    </div>
+</div>
+{% endfor %}
+      
+
+    
+  </main>
+</section>
+{% endblock %}
