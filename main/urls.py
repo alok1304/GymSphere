@@ -12,4 +12,7 @@ urlpatterns = [
     path('terms/', views.terms,name='terms'),
     path('register/', views.register,name='register'),
     path('checkout/<int:plan_id>', views.checkout,name='checkout'),
+    path('checkout_session/<int:plan_id>', views.checkout_session,name='checkout_session'),
+    path('success/', views.success,name='success'),
+    path('cancel/', views.cancel,name='cancel'),
 ]

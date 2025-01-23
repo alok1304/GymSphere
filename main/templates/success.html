@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    success
+{% endblock %}
+
+{% block content %}
+    <div class="status-card bg-light text-center">
+        <div class="text-success">
+            <i class="bi bi-check-circle-fill status-icon"></i>
+        </div>
+        <h3>Payment Successful</h3>
+        <p>Thank you! Your payment has been successfully processed.</p>
+        <a href="/" class="btn btn-success">Go to Home</a>
+    </div>
+{% endblock %}

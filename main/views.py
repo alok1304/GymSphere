@@ -3,6 +3,9 @@ from . import models,forms
 from .forms import UserRegistrationForm
 from django.contrib.auth import login
 from django.shortcuts import redirect
+import stripe
+from dotenv import load_dotenv
+import os
 
 # Home Page
 def home(request):
@@ -63,3 +66,38 @@ def register(request):
 def checkout(request,plan_id):
     planDetail=models.Plan.objects.get(pk=plan_id)
     return render(request,'checkout.html',{'plans':planDetail})
+
+
+load_dotenv() 
+stripe.api_key = os.getenv("STRIPE_API_KEY")
+
+def checkout_session(request,plan_id):
+  planDetail=models.Plan.objects.get(pk=plan_id)
+  session = stripe.checkout.Session.create(
+    payment_method_types=['card'],  
+    line_items=[{
+      'price_data': {
+        'currency': 'inr',
+        'product_data': {
+          'name': planDetail.title,
+        },
+        'unit_amount': int(planDetail.price * 100),
+      },
+      'quantity': 1,
+    }],
+    mode='payment',
+    success_url='http://127.0.0.1:8000/success',
+    cancel_url='http://127.0.0.1:8000/cancel',
+  )
+
+  return redirect(session.url, code=303)
+
+
+# success Page
+def success(request):
+    return render(request,'success.html')
+
+
+# cancel Page
+def cancel(request):
+    return render(request,'cancel.html')
