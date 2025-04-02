@@ -26,19 +26,19 @@ def get_youtube_videos(query):
 # Hugging face
 
 def generate_workout_plan(user_goal):
-    generator = pipeline("text-generation", model="gpt2")  # Better model
+    generator = pipeline("text-generation", model="facebook/opt-1.3b")  # Better model
 
     prompt = (
-        f"Generate a detailed {user_goal} workout plan with warm-up, "
-        f"exercises (with sets & reps), rest time, and cooldown."
+        f"Create a structured {user_goal} workout plan including warm-up, "
+        f"exercises (sets & reps), rest time, and cooldown."
     )
 
     result = generator(
         prompt, 
-        max_length=200,  
+        max_length=300,  # Generate more content
         num_return_sequences=1,  
-        temperature=0.5,  # Less randomness
-        top_k=40,  
+        temperature=0.7,  # Balanced creativity
+        top_k=50,  
         do_sample=True  
     )
 
