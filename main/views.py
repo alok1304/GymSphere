@@ -6,6 +6,9 @@ from django.shortcuts import redirect
 import stripe
 from dotenv import load_dotenv
 import os
+from .forms import WorkoutForm
+from .utils import generate_workout_plan, get_youtube_videos
+
 
 # Home Page
 def home(request):
@@ -46,6 +49,11 @@ def privacy(request):
 # terms Page
 def terms(request):
     return render(request,'terms.html')
+
+# BMI Page
+def bmi(request):
+    return render(request,'bmi.html')
+
 
 
 def register(request):
@@ -101,3 +109,20 @@ def success(request):
 # cancel Page
 def cancel(request):
     return render(request,'cancel.html')
+
+
+# workout page
+def workout_view(request):
+    plan = None
+    videos = []
+    
+    if request.method == "POST":
+        form = WorkoutForm(request.POST)
+        if form.is_valid():
+            goal = form.cleaned_data["goal"]
+            plan = generate_workout_plan(goal)
+            videos = get_youtube_videos(goal + " workout")
+    else:
+        form = WorkoutForm()
+
+    return render(request, "workout.html", {"form": form, "plan": plan, "videos": videos})

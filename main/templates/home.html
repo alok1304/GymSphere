@@ -7,11 +7,11 @@
 {% block content %}
      <main>
 <!-- Banner Start -->
-<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="max-height: 500px; overflow: hidden;">
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="height: 80vh; overflow: hidden;">
   <div class="carousel-inner">
     {% for banner in banners %}
     <div class="carousel-item {% if forloop.counter == 1 %} active {% endif %}">
-      <img src="{{banner.img.url}}" class="d-block w-100" alt="Slide {{ forloop.counter }}" style="object-fit: cover; max-height: 500px;">
+      <img src="{{banner.img.url}}" class="d-block w-100" alt="Slide {{ forloop.counter }}" style="object-fit: cover; height: 100vh; width: 100vw;">
     </div>
     {% endfor %}
   </div>
@@ -25,6 +25,7 @@
   </button>
 </div>
 <!-- End Banner -->
+
 
 		<!-- Services -->
 <section class="container my-4">

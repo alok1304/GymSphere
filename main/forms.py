@@ -14,3 +14,11 @@ class UserRegistrationForm(UserCreationForm):
     class Meta:
        model =User
        fields= ('username','email','password1','password2')
+
+
+class WorkoutForm(forms.Form):
+    goal = forms.ChoiceField(choices=[
+        ('weight_loss', 'Weight Loss'),
+        ('muscle_gain', 'Muscle Gain'),
+        ('strength', 'Strength Training')
+    ])

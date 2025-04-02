@@ -88,3 +88,20 @@ class PlanFeature(models.Model):
 
     def __str__(self):
         return self.feature       
+
+
+#  workout
+class WorkoutCategory(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+class Exercise(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    category = models.ForeignKey(WorkoutCategory, on_delete=models.CASCADE)
+    video_url = models.URLField(blank=True, null=True)  # YouTube links for free video tutorials
+
+    def __str__(self):
+        return self.name

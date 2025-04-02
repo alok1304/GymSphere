@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    workout
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="text-center">Workout Plan</h2>
+    
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Get My Workout Plan</button>
+    </form>
+
+    {% if plan %}
+    <div class="mt-4 p-3 bg-light">
+        <h3>Your Plan:</h3>
+        <p>{{ plan }}</p>
+    </div>
+    {% endif %}
+
+    {% if videos %}
+    <h3 class="mt-4">Recommended YouTube Tutorials:</h3>
+    <ul>
+        {% for video in videos %}
+        <li><a href="{{ video.url }}" target="_blank">{{ video.title }}</a></li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+
+
+{% endblock  %}
