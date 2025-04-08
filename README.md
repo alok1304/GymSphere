@@ -33,11 +33,10 @@ GymSphere is a full-stack fitness platform designed to empower users with person
     source env/bin/activate   # On Windows: env\Scripts\activate
    ```
 3. **Install dependencies**
-   Create a `.env` file with your Stripe and API keys:
    ```bash
    pip install -r requirements.txt
    ```
-4. **Set up environment variables**
+4. **Set up environment variables**: Create a `.env` file with your Stripe and API keys
    ```bash
    STRIPE_API_KEY=your_secret_key
    YOUTUBE_API_KEY=your_youtube_key
